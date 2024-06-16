@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { mongoDBURL } from "./config";
+// import routes
+import { userRouter } from "./routes/user";
 
 // instance of the express library
 // will hold our api
@@ -13,6 +15,11 @@ const app = express();
 app.use(express.json());
 // allows us to have connection and access API from react app
 app.use(cors());
+
+// whenever we want to make a request related to user we
+// make a request to "localhost:3001/user"
+// In other words all end points related to user exist here
+app.use("/user", userRouter);
 
 // make a connection to mongoose database
 mongoose
