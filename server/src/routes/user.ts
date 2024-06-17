@@ -1,7 +1,8 @@
-import { Router, Request, Response } from "express";
-import { UserModel } from "../models/user";
+import { Router, Request, Response, NextFunction } from "express";
+import { IUser, UserModel } from "../models/user";
 import { UserErrors } from "./errors";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 // create a new router object
 const router = Router();
@@ -29,6 +30,53 @@ router.post("/register", async (req: Request, res: Response) => {
     res.status(500).json({ type: err });
   }
 });
+
+router.post("/login", async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+  try {
+    // create a user of type IUser
+    // we get it back from UserModel
+    const user: IUser = await UserModel.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ type: UserErrors.NO_USER_FOUND });
+    }
+    // decryption & comparisson of hashed password and cur_pw
+    const isPasswordValid = bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ type: UserErrors.WRONG_CREDENTIALS });
+    }
+
+    // we can now begin the creation of user
+    // we created an encrypted version of object
+    // object conatins unique identifier for the user
+    // so the encrypted version of this unique id will be our token
+    const token = jwt.sign({ id: user._id }, "secret");
+
+    res.json({ token, userID: user._id });
+  } catch (err) {
+    res.status(500).json({ type: err });
+  }
+});
+
+// check if the authicated user is making the request
+// for example when buying an item.
+export const verifyToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader) {
+    jwt.verify(authHeader, "secret", (err) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      next();
+    });
+  }
+  // block request
+  return res.sendStatus(401);
+};
 
 // would like to import route within the index.ts file
 // so simplity export...
