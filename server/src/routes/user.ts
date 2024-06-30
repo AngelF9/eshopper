@@ -41,7 +41,8 @@ router.post("/login", async (req: Request, res: Response) => {
       return res.status(400).json({ type: UserErrors.NO_USER_FOUND });
     }
     // decryption & comparisson of hashed password and cur_pw
-    const isPasswordValid = bcrypt.compare(password, user.password);
+    // bcrypt comparison is asynchronous and should be awaited
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(400).json({ type: UserErrors.WRONG_CREDENTIALS });
     }
