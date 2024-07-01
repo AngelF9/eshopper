@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { mongoDBURL } from "./config";
-// import routes
+// import routes from user.ts
 import { userRouter } from "./routes/user";
+// import routes from product.ts
+import { productRouter } from "./routes/product";
 
 // instance of the express library
 // will hold our api
@@ -20,6 +22,8 @@ app.use(cors());
 // make a request to "localhost:3001/user"
 // In other words all end points related to user exist here
 app.use("/user", userRouter);
+// applying new router from product.ts
+app.use("/product", productRouter);
 
 // make a connection to mongoose database
 mongoose

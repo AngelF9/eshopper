@@ -1,0 +1,102 @@
+[
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396301"
+    },
+    "productName": "Airpods",
+    "price": 59.99,
+    "description": "High-quality wireless earbuds with noise-cancellation",
+    "stockQuantity": 495,
+    "imageURL": "https://m.media-amazon.com/images/I/71zny7BTRlL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396302"
+    },
+    "productName": "Bluetooth Speaker",
+    "price": 45.99,
+    "description": "Portable Bluetooth speaker with deep bass",
+    "stockQuantity": 400,
+    "imageURL": "https://m.media-amazon.com/images/I/81-YRA6tQqL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396303"
+    },
+    "productName": "Smart Watch",
+    "price": 199.99,
+    "description": "Smart watch with heart rate monitor and GPS",
+    "stockQuantity": 300,
+    "imageURL": "https://m.media-amazon.com/images/I/71Guu84WS9L._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396304"
+    },
+    "productName": "Wireless Mouse",
+    "price": 29.99,
+    "description": "Ergonomic wireless mouse with customizable buttons",
+    "stockQuantity": 250,
+    "imageURL": "https://m.media-amazon.com/images/I/61Ali9WBCbL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396305"
+    },
+    "productName": "Mechanical Keyboard",
+    "price": 89.99,
+    "description": "RGB mechanical keyboard with blue switches",
+    "stockQuantity": 150,
+    "imageURL": "https://m.media-amazon.com/images/I/61QOK1SYmML._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396306"
+    },
+    "productName": "4K Monitor",
+    "price": 299.99,
+    "description": "27-inch 4K UHD monitor with HDR support",
+    "stockQuantity": 100,
+    "imageURL": "https://m.media-amazon.com/images/I/71MlcO29QOL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396307"
+    },
+    "productName": "Gaming Headset",
+    "price": 79.99,
+    "description": "Over-ear gaming headset with surround sound",
+    "stockQuantity": 350,
+    "imageURL": "https://m.media-amazon.com/images/I/81jkMpNHVsL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396308"
+    },
+    "productName": "External Hard Drive",
+    "price": 64.99,
+    "description": "1TB external hard drive with USB 3.0",
+    "stockQuantity": 200,
+    "imageURL": "https://m.media-amazon.com/images/I/61nZZFL4R0L._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a12396309"
+    },
+    "productName": "Webcam",
+    "price": 49.99,
+    "description": "1080p HD webcam with built-in microphone",
+    "stockQuantity": 180,
+    "imageURL": "https://m.media-amazon.com/images/I/61WQr6U3mwL._AC_SL1500_.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "64f678b4239d0c9a1239630a"
+    },
+    "productName": "Laptop Stand",
+    "price": 39.99,
+    "description": "Adjustable laptop stand with cooling fan",
+    "stockQuantity": 220,
+    "imageURL": "https://m.media-amazon.com/images/I/61uC-wjJg-L._AC_SL1500_.jpg"
+  }
+]
