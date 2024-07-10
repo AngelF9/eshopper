@@ -23,12 +23,6 @@ router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
   try {
     // should return one user with specified id
     const user = await UserModel.findById(customerID);
-<<<<<<< HEAD
-    const productIDs = Object.keys(cartItems);
-    const products = await 
-||||||| 7528924
-    const productID = Object.keys(cartItems);
-=======
     // creating a list of keys from cartItems
     const productIDs = Object.keys(cartItems);
     // from mongoose, creat var and set to await (remeber mongoose/mongoDB is asynchronous)
@@ -84,7 +78,6 @@ router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
     // sending back the purchased items: not a list of IDs
     //  grabing back a list of actual items... everything related to these items
     res.json({ purchasedItems: user.purchasedItems });
->>>>>>> temp-branch
   } catch (error) {
     res.status(400).json(error);
   }
