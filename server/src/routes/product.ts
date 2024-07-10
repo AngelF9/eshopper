@@ -21,7 +21,8 @@ router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
   try {
     // should return one user with specified id
     const user = await UserModel.findById(customerID);
-    const productID = Object.keys(cartItems);
+    const productIDs = Object.keys(cartItems);
+    const products = await 
   } catch (error) {
     res.status(400).json(error);
   }
