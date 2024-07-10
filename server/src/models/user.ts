@@ -8,7 +8,7 @@ export interface IUser {
   password: string;
   availableMoney: number;
   // this will be an ID of items purchased
-  // purchasedItems: string[];
+  purchasedItems: string[];
 }
 
 // creating the schema
@@ -16,7 +16,9 @@ const UserSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true, unique: false },
   availableMoney: { type: Number, default: 5000 },
-  // purchasedItems:
+  purchasedItems: [
+    { type: Schema.Types.ObjectId, ref: "product", default: [] },
+  ],
 });
 
 // creating a model of type IUser, calling collection and passing the schema: user
