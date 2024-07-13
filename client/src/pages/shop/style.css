@@ -1,0 +1,55 @@
+.product img {
+  width: 300px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 100px;
+  width: 100%;
+  height: auto;
+  place-items: center;
+}
+
+.product {
+  /* No Noticeable difference */
+  border-radius: 15px;
+  width: 300px;
+  height: 300px;
+  margin: 100px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Pack items around the center */
+}
+
+.product .description {
+  text-align: center;
+}
+
+.product:hover {
+  transition: 0.3s ease-in;
+}
+
+.addToCartBttn {
+  /* rounding our edges */
+  border-radius: 15px;
+  /* bttn color */
+  background-color: transparent;
+
+  min-width: 100px;
+  /* adding space between text & border */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* change appearnce when hovering */
+.addToCartBttn:hover {
+  /* setting bg color */
+  background-color: rgb(19, 19, 19);
+  /* setting color of text */
+  color: white;
+  cursor: pointer;
+}

@@ -40,6 +40,7 @@ router.post("/login", async (req: Request, res: Response) => {
     if (!user) {
       return res.status(400).json({ type: UserErrors.NO_USER_FOUND });
     }
+    // -- Compare provided password with stored hashed password --
     // decryption & comparisson of hashed password and cur_pw
     // bcrypt comparison is asynchronous and should be awaited
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -47,12 +48,14 @@ router.post("/login", async (req: Request, res: Response) => {
       return res.status(400).json({ type: UserErrors.WRONG_CREDENTIALS });
     }
 
+    // -- Generate a JWT token --
     // we can now begin the creation of user
     // we created an encrypted version of object
     // object conatins unique identifier for the user
     // so the encrypted version of this unique id will be our token
     const token = jwt.sign({ id: user._id }, "secret");
 
+    // -- Send the token and useID back to the client --
     res.json({ token, userID: user._id });
   } catch (err) {
     res.status(500).json({ type: err });
@@ -74,9 +77,9 @@ export const verifyToken = (
       }
       next();
     });
+  } else {
+    return res.sendStatus(401);
   }
-  // block request
-  return res.sendStatus(401);
 };
 
 // would like to import route within the index.ts file

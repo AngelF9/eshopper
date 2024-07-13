@@ -27,7 +27,7 @@ const Register = () => {
       });
       alert("Registration completed! Now Login.");
     } catch (error) {
-      if (error.response?.data?.type === UserErrors.USERNAME_ALREADY_EXISTS) {
+      if (error?.response?.data?.type === UserErrors.USERNAME_ALREADY_EXISTS) {
         alert("ERROR: Username already in use.");
       } else {
         alert("ERROR: Something went wrong");
@@ -78,18 +78,25 @@ const Login = () => {
     event.preventDefault();
     // refering to server -> src -> routes -> user.ts
     try {
+      // -- Send POST request to login endpoint --
       const result = await axios.post("http://localhost:3001/user/login", {
         username,
         password,
       });
-      //  TODO: testing DELETE ME
-      setCookies("access_token", result.data.token);
-      localStorage.setItem("userID", result.data.userID);
-      // using naviagate to route user to shopping page "home page"
+
+      // Accessing token and userID from response (response comes from backend routes->user.ts: line 59)
+      const token = result.data.token;
+      const userID = result.data.token;
+
+      // -- Store the token in a cookie --
+      setCookies("access_token", token);
+      // -- Store the userID in localStorage
+      localStorage.setItem("userID", userID);
+      // Navigating to the home page
       navigate("/");
     } catch (error) {
       let errorMessage: string = "something went wrong";
-      switch (error.response?.data?.type) {
+      switch (error?.response?.data?.type) {
         case UserErrors.NO_USER_FOUND:
           errorMessage = "User doesnt exist";
           break;
