@@ -17,10 +17,11 @@
   width: 300px;
   height: 300px;
   margin: 100px;
-  margin-top: 100px;
+  margin-top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Pack items around the center */
+  align-items: center;
 }
 
 .product .description {
@@ -36,6 +37,7 @@
   border-radius: 15px;
   /* bttn color */
   background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
 
   min-width: 100px;
   /* adding space between text & border */
