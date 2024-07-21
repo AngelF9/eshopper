@@ -1,8 +1,10 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useContext } from "react";
 import axios from "axios";
 import { UserErrors } from "../../errors";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { IShopContext, ShopContext } from "../../context/shop-context";
+import "./style.css";
 
 export const AuthPage = () => {
   return (
@@ -74,6 +76,9 @@ const Login = () => {
   // naviagate between different routes
   const navigate = useNavigate();
 
+  // setting isAuthenticated to true
+  const { setIsAuthenticated } = useContext<IShopContext>(ShopContext);
+
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     // refering to server -> src -> routes -> user.ts
@@ -86,12 +91,14 @@ const Login = () => {
 
       // Accessing token and userID from response (response comes from backend routes->user.ts: line 59)
       const token = result.data.token;
-      const userID = result.data.token;
+      const userID = result.data.userID;
 
       // -- Store the token in a cookie --
       setCookies("access_token", token);
       // -- Store the userID in localStorage
       localStorage.setItem("userID", userID);
+      // setting isAuthenticated to true
+      setIsAuthenticated(true);
       // Navigating to the home page
       navigate("/");
     } catch (error) {

@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // please recall the axios needs async and await notation
 // note: cant make useEffect become an async function...
 import axios from "axios";
 import { useGetToken } from "./useGetToken";
 import { IProduct } from "../models/interface";
+import { IShopContext, ShopContext } from "../context/shop-context";
 
 export const useGetProducts = () => {
   // create a state products (holds all products)
@@ -12,6 +13,8 @@ export const useGetProducts = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   // middleware
   const { headers } = useGetToken();
+  // fetching isAuthenticated
+  const { isAuthenticated } = useContext<IShopContext>(ShopContext);
 
   const fetchProducts = async () => {
     try {
@@ -28,8 +31,8 @@ export const useGetProducts = () => {
   // to make API reqeust we need useEffect which
   // will call and request using axios
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (isAuthenticated) fetchProducts();
+  }, [isAuthenticated]);
 
   return { products };
 };

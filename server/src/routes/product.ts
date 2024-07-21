@@ -83,4 +83,26 @@ router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
+// route to fetch purchased items
+// using customerID as a parameter to recieve data, to know which user to get purchased items for.
+router.get(
+  "/purchased-items/:customerID",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    const { customerID } = req.params;
+    try {
+      const user = await UserModel.findById(customerID);
+      if (!user) {
+        res.json(400).json({ type: UserErrors.NO_USER_FOUND });
+      }
+      const products = await ProductModel.find({
+        _id: { $in: user.purchasedItems },
+      });
+      res.json({ purchasedItems: products });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  },
+);
+
 export { router as productRouter };
